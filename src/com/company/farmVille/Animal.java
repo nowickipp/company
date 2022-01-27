@@ -1,4 +1,7 @@
-package com.company;
+package com.company.farmVille;
+
+import com.company.Human;
+import com.company.Sellable;
 
 public class Animal implements Sellable {
     final String species;
@@ -20,9 +23,12 @@ public class Animal implements Sellable {
         return this.weight >= 15;
     }
 
-    public void feed() {
+
+
+    @Override
+    public void feed(Double foodweight) {
         if (isAlive()) {
-            this.weight++;
+            this.weight+= foodweight;
             System.out.println("Yum Yum Yum, Your animal weight is: " + this.weight + " kg");
         }
         if (isObese()) {
@@ -58,7 +64,10 @@ public class Animal implements Sellable {
         }
     }
 
-}
+
+
+    }
+
 
 
 

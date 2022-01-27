@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.devices.Car;
+import com.company.farmVille.Animal;
 
 
 import java.util.Date;
