@@ -11,6 +11,15 @@ public class Car extends Device {
         this.price = price;
     }
 
+    public Car(String producer, String model, Integer year) {
+        super(producer, model, year);
+    }
+
+
+    public void refuel(String fuelType) {
+
+    }
+
 
     @Override
     public String toString() {
