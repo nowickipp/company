@@ -1,15 +1,25 @@
 package com.company.devices;
 
 public abstract class Device {
-    final String producer;
-    final String model;
-    final Integer year;
+    Double value;
+    String producer;
+    String model;
+    Integer year;
 
-    protected Device(String producer, String model, Integer year) {
+    protected Device(String producer, String model, Integer year, Double value) {
         this.producer = producer;
         this.model = model;
         this.year = year;
+        this.value = value;
     }
+
+    public Double getValue(){
+        return this.value;
+    }
+    public int compareTo(Car o){
+        return this.year - o.year;
+    }
+
 
     abstract void turnOn();
 
@@ -21,6 +31,7 @@ public abstract class Device {
                 "Year: " + year +
                 '}';
     }
+
 
 
 }

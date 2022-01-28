@@ -1,11 +1,11 @@
 package com.company.devices;
 
-public class LPG extends Car {
+public abstract class LPG extends Car {
     Integer horsePower;
     public Double price;
 
-    public LPG(String producer, String model, Integer year, Integer horsePower, Double price) {
-        super(producer, model, year);
+    public LPG(String producer, String model, Integer year, Integer horsePower, Double price, Double value) {
+        super(producer, model, year, value);
         this.horsePower = horsePower;
         this.price = price;
     }
@@ -17,6 +17,10 @@ public class LPG extends Car {
         } else {
             System.out.println("This car uses only LPG");
         }
+    }
+
+    public int compareTo(Car o) {
+        return 0;
     }
 
 }

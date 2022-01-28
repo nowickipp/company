@@ -5,25 +5,22 @@ import com.company.devices.*;
 import com.company.farmVille.FarmAnimal;
 import com.company.farmVille.Pet;
 
+import java.util.Arrays;
+
 public class Main {
 
-    public static void main(String[] args) {
-        Human me = new Human();
-
-        me.firstName = "John";
-        me.lastName = "Doe";
+    public static void main(String[] args) throws Exception {
+        Human me = new Human("John", "Doe");
         me.pet = new Pet("dog");
-        Car volvo = new Car("volvo", "s90", 2010, 200, 3500.0);
-        Car volvo2 = new Car("volvo", "s90", 2010, 200, 35000.0);
-        Phone iPhone = new Phone("Iphone", "13", 2021);
-        Human newSeller = new Human();
+        Phone iPhone = new Phone("Iphone", "13", 2021, 2000.0);
+        Human newSeller = new Human("Johnatan", "Doe");
+        Human dealer = new Human("Mike", "Dealer");
         me.cash = 10000.0;
         newSeller.cash = 2000.0;
         FarmAnimal horse = new FarmAnimal("horse");
-        Electric tesla = new Electric("Tesla", "Model S", 2021, 200, 200000.0);
-        Diesel ford = new Diesel("Ford", "Mondeo", 2019, 150, 60000.0);
-        LPG fiat = new LPG("Fiat", "Panda", 2010, 65, 12000.0);
-
+        Diesel ford = new Diesel("ford", "mondeo", 2010, 200, 20000.00, 200000.0);
+        Electric tesla = new Electric("model s", "tesla", 2020, 200, 200000.00, 200000.0);
+        Diesel audi = new Diesel("a4", "audi", 2015, 200, 200000.00, 200000.0);
 
         System.out.println(" \n \" DOGGO \" \n ");
 
@@ -46,25 +43,10 @@ public class Main {
         me.pet.takeForAWalk();
 
 
-        System.out.println(" \n \" CAR \" \n ");
-        me.setMachine(volvo);
-
-
-        System.out.println(" \n \" CAR COMPRASION  \" \n ");
-        System.out.println("Are they the same cars?");
-        System.out.println(volvo == volvo2);
-
-
-        System.out.println(" \n \" CAR \" \n ");
-        System.out.println(volvo);
-
 
         System.out.println(" \n \" ANIMAL \" \n ");
         System.out.println(me.pet);
 
-
-        System.out.println(" \n \" CAR START \" \n ");
-        volvo.TurnOn();
 
 
         System.out.println(" \n \" PHONE TURN ON \" \n ");
@@ -83,14 +65,10 @@ public class Main {
         iPhone.installAppNo3("Snapchat"," 2.0"," snapchat.com");
 
 
-        System.out.println(" \n \" GAS STATION\" \n ");
-        tesla.refuel("Electric");
-        tesla.refuel("LPG");
-        ford.refuel("Diesel");
-        ford.refuel("Electric");
-        fiat.refuel("LPG");
-        fiat.refuel("Diesel");
-
-
+        System.out.println(" \n \" GARAGE\" \n ");
+        me.setCar(ford, 1);
+        me.setCar(audi, 2);
+        me.myCars();
+        System.out.println("Your cars value: " + me.carValue() + " PLN");
     }
 }

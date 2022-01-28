@@ -4,8 +4,8 @@ public class Diesel extends Car {
     Integer horsePower;
     public Double price;
 
-    public Diesel(String producer, String model, Integer year, Integer horsePower, Double price) {
-        super(producer, model, year);
+    public Diesel(String producer, String model, Integer year, Integer horsePower, Double price, Double value) {
+        super(producer, model, year, value);
         this.horsePower = horsePower;
         this.price = price;
     }
@@ -19,4 +19,7 @@ public class Diesel extends Car {
         }
     }
 
+    public int compareTo(Car o) {
+        return 0;
+    }
 }

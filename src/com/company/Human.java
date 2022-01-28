@@ -6,22 +6,99 @@ import com.company.farmVille.Animal;
 
 import java.util.Date;
 
+import static java.util.Objects.nonNull;
+
 public class Human {
-   public String firstName;
+    public String firstName;
     public String lastName;
     public Animal pet;
-    public Car machine;
+    public Car[] garage;
     public Double salary;
     public Double lastSalaryCheck;
     public Date lastSalaryDate;
     public Double cash;
+    public Double getCash;
 
 
-       public Human() {
+    public Human(String firstName, String lastName) {
         this.salary = 10000.0;
         this.lastSalaryDate = new Date();
         this.lastSalaryCheck = this.salary;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.garage = new Car[2];
     }
+
+    public Human(String firstName, String lastName, int garageSize) {
+        this.salary = 10000.0;
+        this.lastSalaryDate = new Date();
+        this.lastSalaryCheck = this.salary;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.garage = new Car[garageSize];
+    }
+
+    public Car getCar(int number) {
+        return this.garage[number];
+    }
+
+    public void setCar(Car car, int place) {
+        this.garage[(place - 1)] = car;
+    }
+
+    public Double carValue(){
+        Double sum = 0d;
+        for (Car car : garage){
+            if (car != null){
+                sum += car.getValue();
+            }
+        }
+        return sum;
+    }
+
+    public void removeCar(Car newCar) {
+        for (int i = 0; i < this.garage.length; i++) {
+            if (this.garage[i] == newCar) {
+                this.garage[i] = null;
+            }
+        }
+    }
+
+    public boolean isFreeSpace() {
+        for (Car car : garage) {
+            if (car == null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean haveCar(Car thatCar) {
+        for (Car car : garage) {
+            if (car == thatCar) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void myCars() {
+        for (int i = 0; i < this.garage.length; i++) {
+            if (nonNull(this.getCar(i)))
+                System.out.println(this.firstName  + (i + 1)  + this.getCar(i));
+        }
+    }
+    public int freePlace() {
+        int x = 0;
+        for (int i = 1; i <= this.garage.length; i++) {
+            if (this.getCar((i - 1)) == null) {
+                x = 1;
+                break;
+            }
+        }
+        return x;
+    }
+
 
     public Double getCash() {
         return cash;
@@ -50,29 +127,7 @@ public class Human {
         }
     }
 
-    public Car pickMachine() {
-        return machine;
-    }
 
-    public void unsetVehicle() {
-        this.machine = null;
-    }
-
-    public Car getMachine() {
-        return machine;
-    }
-
-    public void setMachine(Car newCar) {
-        if (this.salary > newCar.price) {
-            this.machine = newCar;
-            System.out.println("Damn, You can buy it for cash!");
-        } else if (this.salary > (newCar.price / 12)) {
-            this.machine = newCar;
-            System.out.println("Well, you'll pay off the loan");
-        } else {
-            System.out.println("Change job, take a loan, as someone once said");
-        }
-    }
 
 
     @Override
@@ -81,13 +136,13 @@ public class Human {
                 "First Name='" + firstName + "\n" +
                 ", Last Name='" + lastName + "\n" +
                 ", Pet=" + pet + "\n" +
-                ", Car=" + machine + "\n" +
                 ", Salary=" + salary + "\n" +
                 ", Last Salary date=" + lastSalaryDate + "\n" +
                 ", Last salary value=" + lastSalaryCheck +
                 '}';
 
     }
+
 
 }
 
