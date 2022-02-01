@@ -1,7 +1,7 @@
 package com.company.devices;
 import com.company.devices.URL;
 
-public class Phone extends Device {
+public  class Phone extends Device {
     public Phone(String producer, String model, Integer year, Double value) {
         super(producer, model, year, value);
     }

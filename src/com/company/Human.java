@@ -99,6 +99,15 @@ public class Human {
         return x;
     }
 
+    public void addCar(Car car){
+        for (int i=0; i< this.garage.length; i++){
+            if(this.garage[i] == null){
+                this.garage[i] = car;
+            }
+            break;
+        }
+    }
+
 
     public Double getCash() {
         return cash;

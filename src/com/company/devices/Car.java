@@ -2,9 +2,13 @@ package com.company.devices;
 
 import com.company.Human;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Car extends Device {
     Integer horsePower;
     public Double price;
+    List<Human> ownerList = new ArrayList<Human>();
 
 
     public Car(String model, String producer, Integer year, Double value) {
@@ -18,44 +22,67 @@ public abstract class Car extends Device {
 
     }
 
+
     public void sell(Human seller, Human buyer, Double price) throws Exception {
         if (!seller.haveCar(this)) {
-            throw new Exception("Dealer dont have this car right now");
+            throw new Exception("Dealer don`t have this car right now");
         }
-        if (buyer.getCash < price) {
-            throw new Exception("Dude you are broken");
+        if (ownerList.size() -1 >= 0) {
+            if (!ownerList.get(ownerList.size() - 1).equals(seller)) {
+                throw new Exception("Dealer isn`t owner of the car");
+            }
+        } else
+            ownerList.add(seller);
+        {
+            if (buyer.getCash < price) {
+                throw new Exception("Dude you are broken");
+            }
+            if (!buyer.isFreeSpace()) {
+                throw new Exception("Place is full");
+            }
+            System.out.println(seller.firstName + seller.getCash);
+            System.out.println(buyer.firstName + buyer.getCash);
+            buyer.setCash(buyer.getCash - price);
+            seller.setCash(seller.getCash + price);
+            buyer.addCar(this);
+            seller.removeCar(this);
+            ownerList.add(buyer);
+
         }
-        if (!buyer.isFreeSpace()) {
-            throw new Exception("Place is full");
+    }
+
+    public void Owner(Human human) {
+        int x = 0;
+        for (Human ownerList : ownerList) {
+            if (ownerList.equals(human)) {
+                x++;
+                break;
+            }
         }
-        System.out.println(seller.firstName + seller.getCash);
-        System.out.println(buyer.firstName + buyer.getCash);
-        seller.setCash(seller.getCash() + price);
-        buyer.setCash(buyer.getCash() - price);
-        buyer.setCar(this, buyer.freePlace());
-        seller.removeCar(this);
-        System.out.println(seller.firstName + seller.getCash);
-        System.out.println(buyer.firstName + buyer.getCash);
+        if (x > 0)
+            System.out.println(" is owner");
+        else {
+            System.out.println(" wasn`t the owner");
+        }
     }
+        public abstract int compareTo (Car o);
 
-    public abstract int compareTo(Car o);
+
+        @Override
+        void turnOn () {
+        }
+
+        public void TurnOn () {
+            System.out.println("Hello driver, I am your professional driving assistant ");
+        }
+
+        @Override
+        public String toString () {
+            return "Producer: " + producer + "\n" +
+                    "Model:" + model + "\n" +
+                    "Year: " + year + "\n" +
+                    "Value: " + value;
+        }
 
 
-    @Override
-    void turnOn() {
     }
-
-    public void TurnOn() {
-        System.out.println("Hello driver, I am your professional driving assistant ");
-    }
-
-    @Override
-    public String toString() {
-        return "Producer: " + producer + "\n" +
-                "Model:" + model + "\n" +
-                "Year: " + year + "\n" +
-                "Value: " + value;
-    }
-
-
-}

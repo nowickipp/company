@@ -1,6 +1,8 @@
 package com.company.devices;
 
-public abstract class Device {
+import com.company.Sellable;
+
+public abstract class Device implements Comparable<Car> {
     Double value;
     String producer;
     String model;
@@ -19,7 +21,6 @@ public abstract class Device {
     public int compareTo(Car o){
         return this.year - o.year;
     }
-
 
     abstract void turnOn();
 

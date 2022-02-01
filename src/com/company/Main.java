@@ -4,8 +4,8 @@ package com.company;
 import com.company.devices.*;
 import com.company.farmVille.FarmAnimal;
 import com.company.farmVille.Pet;
+import com.company.devices.Car;
 
-import java.util.Arrays;
 
 public class Main {
 
@@ -15,12 +15,15 @@ public class Main {
         Phone iPhone = new Phone("Iphone", "13", 2021, 2000.0);
         Human newSeller = new Human("Johnatan", "Doe");
         Human dealer = new Human("Mike", "Dealer");
-        me.cash = 10000.0;
-        newSeller.cash = 2000.0;
+        me.cash = 10000000.0;
+        newSeller.cash = 2000000.0;
         FarmAnimal horse = new FarmAnimal("horse");
         Diesel ford = new Diesel("ford", "mondeo", 2010, 200, 20000.00, 200000.0);
         Electric tesla = new Electric("model s", "tesla", 2020, 200, 200000.00, 200000.0);
         Diesel audi = new Diesel("a4", "audi", 2015, 200, 200000.00, 200000.0);
+        ford.Owner(me);
+        tesla.Owner(dealer);
+        audi.Owner(dealer);
 
         System.out.println(" \n \" DOGGO \" \n ");
 
@@ -70,5 +73,8 @@ public class Main {
         me.setCar(audi, 2);
         me.myCars();
         System.out.println("Your cars value: " + me.carValue() + " PLN");
+
+
+
     }
 }
